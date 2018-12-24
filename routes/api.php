@@ -17,7 +17,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// 基本控制器路由
 Route::get('/test',[
     'as' => 'api.test.index',
     'uses' => 'Tests\TestController@index'
 ]);
+
+// 隐式控制器路由,对应的方法名格式（驼峰法）：请求方式+方法名，方法名为多个单词时，路由以“-”连接
+// Route::controler('home','HomeController');
+
+// REST资源控制器路由
+Route::resource(
+    'test','Tests\TestController'
+);
