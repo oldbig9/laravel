@@ -15,9 +15,9 @@ class TestMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!session('test')){
-            return redirect('/login');
-        }
+        // if(!session('test')){
+        //     return redirect('/login');
+        // }
         return $next($request);
     }
 }
