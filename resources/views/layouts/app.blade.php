@@ -45,6 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">笔记</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{route('user.index')}}">用户列表</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -78,11 +81,22 @@
                                 </div>
                             </li>
                         @endguest
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link" href="">已登录</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="">未登录</a>
+                            </li>
+                            
+                        @endauth
                     </ul>
                 </div>
             </div>
         </nav>
 
+        @include('layouts._message')
         <main class="py-4">
             @yield('content')
         </main>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
-    'homepage' => '首页',
+    'homepage' => '首页',    
 ];
