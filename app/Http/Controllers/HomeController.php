@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blog;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -22,7 +24,10 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home.index');
+    {   
+        // dd(User::find(1)->blogs);//集合 collections
+        // dd(User::find(1)->blogs()->get()); //加括号后可以进行链式操作
+        $blogs = Blog::orderBy('created_at','desc')->with('user')->paginate(10);
+        return view('home.index',compact('blogs'));
     }
 }

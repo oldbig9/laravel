@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function __construct(){
+        // 用户必须登录才能进行用户的相关操作
+        $this->middleware('auth',[
+            'except' => ['index','show']
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *

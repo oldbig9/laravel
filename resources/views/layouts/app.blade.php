@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ trans('index.homepage') }}</a>
+                        <a class="nav-link" href="{{route('home')}}">{{ trans('index.homepage') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">文章</a>
