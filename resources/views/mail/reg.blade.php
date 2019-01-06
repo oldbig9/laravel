@@ -1,0 +1,1 @@
+<a href="{{route('user.confirmemail',$user['name'])}}">点击链接完成注册</a>

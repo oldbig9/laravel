@@ -109,4 +109,26 @@ class UserController extends Controller
         session()->flash('success','删除成功');
         return redirect()->route('user.index');
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $token
+     * @return void
+     */
+    public function confirmEmail($token)
+    {
+        // dd($token);
+        $user = User::where('name',$token)->first();
+        if($user){
+            $user->email_verified_at = date('Y-m-d H:i:s',time());
+            $user->save();
+            session()->flash('success','邮箱验证成功');
+            \Auth::login($user);
+            return redirect('/');
+        }
+
+        session()->flash('danger','邮箱验证失败');
+        return redirect('/');
+    }
 }

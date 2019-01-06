@@ -21,3 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/user','UserController');
 Route::resource('/blog','BlogController');
+Route::get('/comfirmemail/{token}',[
+    'as' => 'user.confirmemail',
+    'uses' => 'UserController@confirmEmail'
+]);
