@@ -8,7 +8,7 @@
                 <div class="card-header">编辑用户</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.update',$user) }}">
+                    <form method="POST" action="{{ route('users.update',$user) }}">
                         @csrf @method('PUT')
 
                         <div class="form-group row">

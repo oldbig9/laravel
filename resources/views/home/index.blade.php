@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             {{-- <div class="card">
@@ -22,7 +22,7 @@
                     发表博客
                 </div>
                 <div class="card-body">
-                    <form action="{{route('blog.store')}}" method="post">
+                    <form action="{{route('blogs.store')}}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for=""></label>

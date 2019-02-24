@@ -22,7 +22,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -46,7 +46,7 @@
                             <a class="nav-link" href="#">笔记</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{route('user.index')}}">用户列表</a>
+                        <a class="nav-link" href="{{route('users.index')}}">用户列表</a>
                         </li>
                     </ul>
 
@@ -78,6 +78,12 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
                                 </div>
                             </li>
                         @endguest

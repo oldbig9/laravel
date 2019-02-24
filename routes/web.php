@@ -19,10 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/user', 'UserController');
-Route::resource('/blog', 'BlogController');
+Route::resource('/users', 'UserController');
+Route::resource('/blogs', 'BlogController');
 Route::get('/comfirmemail/{token}', [
-    'as' => 'user.confirmemail',
+    'as' => 'users.confirmemail',
     'uses' => 'UserController@confirmEmail',
 ]);
 

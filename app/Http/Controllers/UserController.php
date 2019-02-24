@@ -23,8 +23,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id','desc')->paginate(10);
-        // return view('user.index',['users'=>$users]);
-        return view('user.index',compact('users'));
+        // return view('users.index',['users'=>$users]);
+        return view('users.index',compact('users'));
     }
 
     /**
@@ -56,7 +56,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.show',compact('user'));
+        return view('users.show',compact('user'));
     }
 
     /**
@@ -67,7 +67,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit',compact('user'));
+        return view('users.edit',compact('user'));
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
         // $user->update($data);
         $user->save();
         session()->flash('success','编辑成功');
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
 
     }
 
@@ -107,7 +107,7 @@ class UserController extends Controller
         $this->authorize('delete',$user);
         $user->delete();
         session()->flash('success','删除成功');
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 
     /**

@@ -35,16 +35,16 @@
                         <td>{{$user->email}}</td>
                         <td>
                             <div class="btn-group">
-                                <form action="{{route('user.show',['id'=>$user->id])}}" method="get">
+                                <form action="{{route('users.show',['id'=>$user->id])}}" method="get">
                                     <button type="submit" class="btn btn-sm btn-outline-success">查看</button>
                                 </form>
                                 @can('update', $user)
-                                    <form action="{{route('user.edit',$user)}}" method="get">
+                                    <form action="{{route('users.edit',$user)}}" method="get">
                                         <button type="submit" class="btn btn-sm btn-outline-info">编辑</button>
                                     </form>
                                 @endcan
                                 @can('delete',$user )
-                                    <form action="{{route('user.destroy',$user)}}" method="post">
+                                    <form action="{{route('users.destroy',$user)}}" method="post">
                                         @csrf @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-outline-danger">删除</button>
                                     </form>
