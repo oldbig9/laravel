@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
-use App\User;
+use App\Models\User;
 use App\Mail\RegMail;
 
 class HomeController extends Controller

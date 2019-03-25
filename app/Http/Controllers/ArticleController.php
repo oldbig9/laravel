@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
-use App\Models\User;
 
-class PasswordController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PasswordController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
         //
     }
@@ -52,10 +52,10 @@ class PasswordController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
         //
     }
@@ -64,10 +64,10 @@ class PasswordController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Article $article)
     {
         //
     }
@@ -75,31 +75,11 @@ class PasswordController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
         //
     }
-
-
-    public function findBack(){
-        return view('password.findback');
-    }
-
-    public function send(Request $request){
-        $this->validate($request,[
-            'email' => 'email|required'
-        ]);
-        $user = User::where('email',$request->email)->first();
-        // dd($user);
-        if(!$user){
-            session()->flash('danger','邮箱用户不存在');
-            return back();
-        }
-
-        \Notification::send($user,new FindPassword($user->email));
-    }
-
 }
