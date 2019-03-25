@@ -1,11 +1,75 @@
 <?php
 
 namespace App\Repositories;
-use App\Repositories\Repository;
 
-class ModelRepository extends Repository
+use App\Models\ModelClass;
+use App\Repositories\BaseRepository;
+use App\Exceptions\GeneralException;
+
+class ModelRepository extends BaseRepository
 {
-    public function handle()
+    /**
+    * 定义数据模型
+    */
+    const MODEL = ModelClass::class;
+
+    /**
+     * @param array $attributes
+     * @return ModelClass
+     * @throws GeneralException
+     */
+    public function store(array $attributes)
+    {
+        $model_instance = $this->serialization($attributes);
+
+        try {
+            $model_instance->save();
+            return $model_instance;
+        } catch (Exception $exception) {
+            throw new GeneralException($exception);
+        }
+    }
+
+    /**
+     * @param ModelClass $model_instance
+     * @param array $attributes
+     * @return ModelClass
+     * @throws GeneralException
+     */
+    public function update(ModelClass $model_instance, array $attributes)
+    {
+        if (is_array($attributes)) {
+            foreach ($attributes as $key => $value) {
+                $model_instance->$key = $value;
+            }
+            $model_instance->saveOrFail();
+            return $model_instance;
+        }
+        throw new GeneralException('要更新的属性必须是数组');
+    }
+
+    /**
+     * @param ModelClass $model_instance
+     * @param bool $force
+     * @return bool|null
+     * @throws GeneralException
+     */
+    public function delete(ModelClass $model_instance, $force = false)
+    {
+        try {
+            return $force ? $model_instance->forceDelete() : $model_instance->delete();
+        } catch (Exception $exception) {
+            throw new GeneralException('删除信息失败');
+        }
+    }
+
+    /**
+     * 序列化输入
+     *
+     * @param array $attributes
+     * @return ModelClass
+     */
+    protected function serialization(array $attributes)
     {
         //
     }

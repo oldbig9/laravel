@@ -37,7 +37,10 @@ class MakeRepository extends GeneratorCommand
     protected function replaceClass($stub, $name)
     {
         $stub = parent::replaceClass($stub, $name);
-        return str_replace('ModelRepository', $this->argument('name'), $stub);
+        $stub = str_replace('ModelRepository', $this->argument('name'), $stub);
+        $stub = str_replace('ModelClass', $this->argument('model'), $stub);
+        $stub = str_replace('model_instance', strtolower($this->argument('model')), $stub);
+        return $stub;
     }
     /**
      * Get the stub file for the generator.
@@ -67,7 +70,7 @@ class MakeRepository extends GeneratorCommand
     {
         return [
             ['name', InputArgument::REQUIRED, 'The name of the contract.'],
-            ['model', InputArgument::OPTIONAL, 'The model of the repository.'],
+            ['model', InputArgument::REQUIRED, 'The model of the repository.'],
         ];
     }
 }
