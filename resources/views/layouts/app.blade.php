@@ -87,16 +87,6 @@
                                 </div>
                             </li>
                         @endguest
-                        @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="">已登录</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="">未登录</a>
-                            </li>
-                            
-                        @endauth
                     </ul>
                 </div>
             </div>
